@@ -26,6 +26,12 @@ class Player:
     def get_name(self):
         return self.name
 
+def get_win_team():
+    win_team = input("勝ったチーム : ")
+    if (win_team == "A" or win_team == "B" or win_team == "a" or win_team == "b"):
+        return win_team
+    else:
+        return get_win_team()
 
 def main():
     player_list = []
@@ -51,9 +57,14 @@ def main():
     #player_list.append(Player_10)
 
     while (True):
+        observer_1_name = ""
+        observer_2_name = ""
 
-        observer_1_name = input("観戦者1の名前 : ")
-        observer_2_name = input("観戦者2の名前 : ")
+        if (len(player_list) == 9):
+            observer_1_name = input("観戦者1の名前 : ")
+        elif (len(player_list) == 10):
+            observer_1_name = input("観戦者1の名前 : ")
+            observer_2_name = input("観戦者2の名前 : ")
 
         # 観戦者
         is_exist_observer_1 = False
@@ -90,8 +101,7 @@ def main():
         for team in itertools.combinations(player_list, 4):
             team_X = []
             team_Y = []
-            # print("team A : ", team_X[0].name,
-            #      team_X[1].name, team_X[2].name, team_X[3].name)
+
             for player in team:
                 team_X.append(player)
 
@@ -101,6 +111,7 @@ def main():
                     player.name != team_X[2].name and
                         player.name != team_X[3].name):
                     team_Y.append(player)
+
             team_X_rate = team_X[0].get_win_rate() + team_X[1].get_win_rate() + \
                 team_X[2].get_win_rate() + team_X[3].get_win_rate()
             team_Y_rate = team_Y[0].get_win_rate() + team_Y[1].get_win_rate() + \
@@ -118,15 +129,15 @@ def main():
               team_B[1].name, team_B[2].name, team_B[3].name)
 
         # 勝率計算
-        win_team = input("勝ったチーム : ")
+        win_team = get_win_team()
 
-        if (win_team == "A"):
+        if (win_team == "A" or win_team == "a"):
             for player in team_A:
                 player.win_game()
             for player in team_B:
                 player.lose_game()
 
-        elif (win_team == "B"):
+        elif (win_team == "B" or win_team == "b"):
             for player in team_B:
                 player.win_game()
             for player in team_A:
