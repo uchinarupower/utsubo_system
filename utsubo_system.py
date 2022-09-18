@@ -71,7 +71,7 @@ def main():
         is_exist_observer_2 = False
         if (observer_1_name != ""):
             for i in range(len(player_list)):
-                if (player_list[i].name == observer_1_name):
+                if (player_list[i].get_name() == observer_1_name):
                     observer_1 = player_list.pop(i)
                     is_exist_observer_1 = True
                     break
@@ -82,7 +82,7 @@ def main():
 
         if (observer_2_name != ""):
             for i in range(len(player_list)):
-                if (player_list[i].name == observer_2_name):
+                if (player_list[i].get_name() == observer_2_name):
                     observer_2 = player_list.pop(i)
                     is_exist_observer_2 = True
                     break
@@ -106,10 +106,10 @@ def main():
                 team_X.append(player)
 
             for player in player_list:
-                if (player.name != team_X[0].name and
-                    player.name != team_X[1].name and
-                    player.name != team_X[2].name and
-                        player.name != team_X[3].name):
+                if (player.get_name() != team_X[0].get_name() and
+                    player.get_name() != team_X[1].get_name() and
+                    player.get_name() != team_X[2].get_name() and
+                        player.get_name() != team_X[3].get_name()):
                     team_Y.append(player)
 
             team_X_rate = team_X[0].get_win_rate() + team_X[1].get_win_rate() + \
@@ -123,10 +123,10 @@ def main():
                 team_B = team_Y
                 previous_rate_diff = rate_diff
 
-        print("team A : ", team_A[0].name,
-              team_A[1].name, team_A[2].name, team_A[3].name)
-        print("team B : ", team_B[0].name,
-              team_B[1].name, team_B[2].name, team_B[3].name)
+        print("team A : ", team_A[0].get_name(),
+              team_A[1].get_name(), team_A[2].get_name(), team_A[3].get_name())
+        print("team B : ", team_B[0].get_name(),
+              team_B[1].get_name(), team_B[2].get_name(), team_B[3].get_name())
 
         # 勝率計算
         win_team = get_win_team()
