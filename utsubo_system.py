@@ -23,38 +23,37 @@ class Player:
     def get_win_rate(self):
         return self.win_rate
 
+    def get_name(self):
+        return self.name
+
 
 def main():
-    all_player_list = []
+    player_list = []
     Player_1 = Player("utsubo")
-    all_player_list.append(Player_1)
+    player_list.append(Player_1)
     Player_2 = Player("haruto")
-    all_player_list.append(Player_2)
+    player_list.append(Player_2)
     Player_3 = Player("hiyokome")
-    all_player_list.append(Player_3)
+    player_list.append(Player_3)
     Player_4 = Player("musyamusya")
-    all_player_list.append(Player_4)
+    player_list.append(Player_4)
     Player_5 = Player("kusomegane")
-    all_player_list.append(Player_5)
+    player_list.append(Player_5)
     Player_6 = Player("mizu")
-    all_player_list.append(Player_6)
+    player_list.append(Player_6)
     Player_7 = Player("kene")
-    all_player_list.append(Player_7)
+    player_list.append(Player_7)
     Player_8 = Player("nusupi")
-    all_player_list.append(Player_8)
-    Player_9 = Player()
-    Player_9.name = "sena"
+    player_list.append(Player_8)
+    Player_9 = Player("sena")
     player_list.append(Player_9)
-    Player_10 = Player()
-    Player_10.name = ""
-    player_list.append(Player_10)
+    #Player_10 = Player("")
+    #player_list.append(Player_10)
 
     while (True):
 
         observer_1_name = input("観戦者1の名前 : ")
         observer_2_name = input("観戦者2の名前 : ")
-
-        player_list = all_player_list
 
         # 観戦者
         is_exist_observer_1 = False
@@ -65,6 +64,10 @@ def main():
                     observer_1 = player_list.pop(i)
                     is_exist_observer_1 = True
                     break
+            # error
+            if (not is_exist_observer_1):
+                print("該当する名前がありません。もう一度入力してください。")
+                continue
 
         if (observer_2_name != ""):
             for i in range(len(player_list)):
@@ -72,8 +75,17 @@ def main():
                     observer_2 = player_list.pop(i)
                     is_exist_observer_2 = True
                     break
+            # error
+            if (not is_exist_observer_2):
+                print("該当する名前がありません。もう一度入力してください。")
+                continue
 
         # チーム決定
+        # error
+        if (len(player_list) != 8):
+            print("人数が8人ではない({}人)のでチーム分けできませんでした。".format(len(player_list)))
+            continue
+
         previous_rate_diff = 100
         for team in itertools.combinations(player_list, 4):
             team_X = []
