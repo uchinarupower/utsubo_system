@@ -2,10 +2,15 @@
 import discord
 import utsubo_system
 
+def get_token():
+    with open("DISCORD_TOKEN.txt") as f:
+        s = f.read()
+
+    print(s)
 
 def connect_discord():
     # 自分のBotのアクセストークンに置き換えてください
-    TOKEN = 'MTAyMzUyOTE1OTUwNDQ0OTU0OA.GQfNvC.1ZZnrG2fcwaWLHeCFP8KiNoTH4KcatwsV8EBlM'
+    TOKEN = get_token()
 
     # 接続に必要なオブジェクトを生成
     client = discord.Client()
