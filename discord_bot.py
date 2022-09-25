@@ -29,8 +29,11 @@ def connect_discord():
             return
 
         if message.content.startswith('/us'):
-
-            await message.channel.send('uoooooooo')
+            msgs = message.content.split(" ")
+            if (msgs[1] == "new"):
+                utsubo_system.decide_team()
+                
+                await message.channel.send('uoooooooo')
 
 
 

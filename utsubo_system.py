@@ -1,32 +1,5 @@
-import copy
+import Player
 import itertools
-
-
-
-class Player:
-    def __init__(self, name):
-        self.win_num = 0
-        self.game_num = 0
-        self.win_rate = 0
-        self.name = name
-
-    def win_game(self):
-        self.win_num += 1
-        self.game_num += 1
-        if (self.win_num != 0):
-            self.win_rate = self.game_num / self.win_num
-
-    def lose_game(self):
-        self.game_num += 1
-        if (self.win_num != 0):
-            self.win_rate = self.game_num / self.win_num
-
-    def get_win_rate(self):
-        return self.win_rate
-
-    def get_name(self):
-        return self.name
-
 
 def get_win_team():
     win_team = input("勝ったチーム : ")
