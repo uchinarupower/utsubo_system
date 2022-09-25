@@ -2,6 +2,7 @@ import copy
 import itertools
 
 
+
 class Player:
     def __init__(self, name):
         self.win_num = 0
@@ -26,6 +27,7 @@ class Player:
     def get_name(self):
         return self.name
 
+
 def get_win_team():
     win_team = input("勝ったチーム : ")
     if (win_team == "A" or win_team == "B" or win_team == "a" or win_team == "b"):
@@ -33,7 +35,9 @@ def get_win_team():
     else:
         return get_win_team()
 
+
 def main():
+    connect_discord()
     player_list = []
     Player_1 = Player("utsubo")
     player_list.append(Player_1)
@@ -54,7 +58,7 @@ def main():
     Player_9 = Player("sena")
     player_list.append(Player_9)
     #Player_10 = Player("")
-    #player_list.append(Player_10)
+    # player_list.append(Player_10)
 
     while (True):
         observer_1_name = ""
@@ -150,4 +154,28 @@ def main():
             player_list.append(observer_2)
 
 
-main()
+def connect_discord():
+    TOKEN = 'MTAyMzUyOTE1OTUwNDQ0OTU0OA.GQfNvC.1ZZnrG2fcwaWLHeCFP8KiNoTH4KcatwsV8EBlM'
+    client = discord.Client()
+    # 起動時に動作する処理
+    @client.event
+    async def on_ready():
+        print(f'We have logged in as {client.user}')
+
+    @client.event
+    async def on_message(message):
+        msg_txt = message.content
+        msg_author = message.author
+
+        # botからのメッセージは処理させない
+        if msg_author.bot:
+            return
+
+        if msg_txt == "/greeting":
+            print("greet")
+            await message.channel.send(f'{msg_author.mention}さん、こんにちは')
+
+    # Botの起動とDiscordサーバーへの接続
+    client.run(TOKEN)
+
+connect_discord()
