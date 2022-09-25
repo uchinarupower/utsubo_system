@@ -36,8 +36,7 @@ def get_win_team():
         return get_win_team()
 
 
-def main():
-    connect_discord()
+def decide_team():
     player_list = []
     Player_1 = Player("utsubo")
     player_list.append(Player_1)
@@ -154,28 +153,3 @@ def main():
             player_list.append(observer_2)
 
 
-def connect_discord():
-    TOKEN = 'MTAyMzUyOTE1OTUwNDQ0OTU0OA.GQfNvC.1ZZnrG2fcwaWLHeCFP8KiNoTH4KcatwsV8EBlM'
-    client = discord.Client()
-    # 起動時に動作する処理
-    @client.event
-    async def on_ready():
-        print(f'We have logged in as {client.user}')
-
-    @client.event
-    async def on_message(message):
-        msg_txt = message.content
-        msg_author = message.author
-
-        # botからのメッセージは処理させない
-        if msg_author.bot:
-            return
-
-        if msg_txt == "/greeting":
-            print("greet")
-            await message.channel.send(f'{msg_author.mention}さん、こんにちは')
-
-    # Botの起動とDiscordサーバーへの接続
-    client.run(TOKEN)
-
-connect_discord()
